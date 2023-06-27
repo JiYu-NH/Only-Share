@@ -1,0 +1,32 @@
+//全局通用混入样式
+@mixin bgurl($url) {
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+@mixin positionAbsoluteFull {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+@mixin positionFixedFull {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+
+@mixin contentRestFull {
+    width: 100%;
+    height: calc(100% - $NavHeinght);
+}
+
+@mixin overflowEllipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

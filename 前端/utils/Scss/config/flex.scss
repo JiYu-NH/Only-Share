@@ -1,0 +1,109 @@
+/*  主轴：X  */
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flexAroundCenter{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+@mixin flexBetweenStart {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+@mixin flexBetweenCenter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flexBetweenEnd {
+    display: flex;
+    align-items:flex-end;
+    justify-content: space-between;
+}
+
+@mixin  flexStart {
+    display: flex;
+    align-items:flex-start;
+    justify-content: flex-start;
+}
+
+@mixin  flexStartCenter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin  flexStartEnd {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+@mixin flexEndCenter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@mixin flexStartWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+@mixin flexAroundWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+@mixin flexBetweenWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+
+/*  主轴：Y  */
+
+@mixin flexCol{
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flexColCenter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flexColStartCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin flexColCenterStart {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+@mixin  flexColBetweenStart{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}

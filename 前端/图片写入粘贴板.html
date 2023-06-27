@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>图片写入粘贴板</title>
+    </head>
+    <body>
+        <script>
+            let timestamp = new Date().getTime();
+            console.log(timestamp);
+
+            //方法一： 请求图片地址、将图片写入粘贴板    要解决跨域的问题
+            function writeImg1(url) {
+                // chrome 只支持png图片
+                console.log('url', url);
+
+                let xhr = new XMLHttpRequest();
+                xhr.open('get', url, true);
+                xhr.responseType = 'blob';
+                xhr.send();
+
+                xhr.onreadystatechange = function (e) {
+                    if (xhr.readyState == xhr.DONE) {
+                        let resBlob = xhr.response;
+                        console.log('Blob', resBlob);
+
+                        const item = new ClipboardItem({
+                            'image/png': resBlob,
+                        });
+
+                        console.log('item', item);
+                        navigator.clipboard.write([item]);
+                    }
+                };
+            }
+
+            // 方法二： 通过 canvas 将 img 图片数据 转为 base64 再转为Blob 数据  不存在跨域问题
+            function writeImg2(url) {
+                // chrome 只支持png图片
+                console.log('url', url);
+
+                let img = new Image();
+                img.src = url;
+                img.setAttribute('crossOrigin', 'anonymous');
+
+                img.onload = function () {
+                    let canvas = document.createElement('canvas');
+                    canvas.width = this.width;
+                    canvas.height = this.height;
+
+                    let ctx = canvas.getContext('2d');
+                    ctx.drawImage(this, 0, 0);
+
+                    let dataURL = canvas.toDataURL('image/png');
+                    let imgB64Data = dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
+
+                    (bstr = atob(imgB64Data)), (n = imgB64Data.length), (u8arr = new Uint8Array(n));
+                    while (n--) {
+                        u8arr[n] = bstr.charCodeAt(n);
+                    }
+
+                    let blobData = new Blob([u8arr], { type: 'image/png' });
+                    console.log('Blob', blobData);
+
+                    const item = new ClipboardItem({
+                        'image/png': blobData,
+                    });
+
+                    console.log('item', item);
+                    navigator.clipboard.write([item]);
+                };
+            }
+
+            // writeImg1('local.png');
+            writeImg2('https://img1.baidu.com/it/u=282903700,3028230046&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500');
+        </script>
+    </body>
+</html>
